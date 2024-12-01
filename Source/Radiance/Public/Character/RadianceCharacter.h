@@ -13,5 +13,6 @@ UCLASS()
 class RADIANCE_API ARadianceCharacter : public ARadianceCharacterBase
 {
 	GENERATED_BODY()
-	
+public:
+	ARadianceCharacter();
 };
