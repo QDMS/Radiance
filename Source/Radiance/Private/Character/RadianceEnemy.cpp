@@ -3,11 +3,19 @@
 
 #include "Character/RadianceEnemy.h"
 
+#include "AbilitySystem/RadianceAbilitySystemComponent.h"
+#include "AbilitySystem/RadianceAttributeSet.h"
 #include "Radiance/Radiance.h"
 
 ARadianceEnemy::ARadianceEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AbilitySystemComponent = CreateDefaultSubobject<URadianceAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+
+	AttributeSet = CreateDefaultSubobject<URadianceAttributeSet>("AttributeSet");
 }
 
 void ARadianceEnemy::HighlightActor()
@@ -22,4 +30,11 @@ void ARadianceEnemy::UnHighlightActor()
 {
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
+}
+
+void ARadianceEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
 }

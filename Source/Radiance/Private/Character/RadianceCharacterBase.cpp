@@ -12,6 +12,11 @@ ARadianceCharacterBase::ARadianceCharacterBase()
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+UAbilitySystemComponent* ARadianceCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void ARadianceCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
