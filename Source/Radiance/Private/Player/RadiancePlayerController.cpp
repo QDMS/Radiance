@@ -82,9 +82,11 @@ void ARadiancePlayerController::BeginPlay()
 	Super::BeginPlay();
 	check(RadianceContext);
 
-	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(RadianceContext, 0);
+	if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer()))
+	{
+		Subsystem->AddMappingContext(RadianceContext, 0);
+	}
+	
 
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;

@@ -5,7 +5,9 @@
 
 #include "AbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/RadiancePlayerController.h"
 #include "Player/RadiancePlayerState.h"
+#include "UI/HUD/RadianceHUD.h"
 
 ARadianceCharacter::ARadianceCharacter()
 {
@@ -43,4 +45,13 @@ void ARadianceCharacter::InitAbilityActorInfo()
 	RadiancePlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(RadiancePlayerState, this);
 	AbilitySystemComponent = RadiancePlayerState->GetAbilitySystemComponent();
 	AttributeSet = RadiancePlayerState->GetAttributeSet();
+
+	if (ARadiancePlayerController* RadiancePlayerController = Cast<ARadiancePlayerController>(GetController()))
+	{
+		if (ARadianceHUD* RadianceHUD = Cast<ARadianceHUD>(RadiancePlayerController->GetHUD()))
+		{
+			RadianceHUD->InitOverlay(RadiancePlayerController, RadiancePlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
+	
 }

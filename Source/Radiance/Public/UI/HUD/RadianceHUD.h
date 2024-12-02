@@ -6,6 +6,10 @@
 #include "GameFramework/HUD.h"
 #include "RadianceHUD.generated.h"
 
+class UAttributeSet;
+class UAbilitySystemComponent;
+struct FWidgetControllerParams;
+class UOverlayWidgetController;
 class URadianceUserWidget;
 /**
  * 
@@ -20,12 +24,22 @@ public:
 	UPROPERTY()
 	TObjectPtr<URadianceUserWidget> OverlayWidget;
 
+	UOverlayWidgetController* GetOverlayWidgetController(const FWidgetControllerParams& WCParams);
+
+	void InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS);
+
 protected:
 
-	virtual void BeginPlay() override;
+
 
 private:
 
-	UPROPERTY(EditAnywhere, Category = "HUD")
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<URadianceUserWidget> OverlayWidgetClass;
+
+	UPROPERTY()
+	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
 };
