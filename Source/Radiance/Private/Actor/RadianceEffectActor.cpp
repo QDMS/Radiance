@@ -32,6 +32,7 @@ void ARadianceEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, A
 		const URadianceAttributeSet* RadianceAttributeSet = Cast<URadianceAttributeSet>(ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(URadianceAttributeSet::StaticClass()));
 		URadianceAttributeSet* MutableRadianceAttributeSet = const_cast<URadianceAttributeSet*>(RadianceAttributeSet);
 		MutableRadianceAttributeSet->SetHealth(RadianceAttributeSet->GetHealth() + 25.f);
+		MutableRadianceAttributeSet->SetMana(RadianceAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 	

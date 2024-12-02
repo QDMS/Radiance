@@ -24,6 +24,7 @@ UOverlayWidgetController* ARadianceHUD::GetOverlayWidgetController(const FWidget
 		}
 
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
+		OverlayWidgetController->BindCallBacksToDependencies();
 
 		return OverlayWidgetController;
 	}
@@ -59,7 +60,10 @@ void ARadianceHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbility
 		return;
 	}
 
-	OverlayWidget->SetWidgetController(WidgetController);  
+	OverlayWidget->SetWidgetController(WidgetController);
+
+	WidgetController->BroadcastInitialValues();
+	
 	Widget->AddToViewport();
 }
 

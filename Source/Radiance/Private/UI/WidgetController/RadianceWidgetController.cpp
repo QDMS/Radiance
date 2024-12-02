@@ -22,3 +22,8 @@ void URadianceWidgetController::BroadcastInitialValues()
 {
 	
 }
+
+void URadianceWidgetController::BindCallBacksToDependencies()
+{
+	
+}
