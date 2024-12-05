@@ -33,3 +33,11 @@ void ARadianceEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<
 	TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpec.Data.Get());
 }
 
+void ARadianceEffectActor::OnOverlap(AActor* TargetActor)
+{
+}
+
+void ARadianceEffectActor::OnEndOverlap(AActor* TargetActor)
+{
+}
+
